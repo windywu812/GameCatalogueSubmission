@@ -29,6 +29,9 @@ extension String {
         str = str.replacingOccurrences(of: "<li>", with: "")
         str = str.replacingOccurrences(of: "</li>", with: "")
         str = str.replacingOccurrences(of: "&quot;", with: "")
+        str = str.replacingOccurrences(of: "&#39;t", with: "")
+        str = str.replacingOccurrences(of: ";", with: ",")
+        str = str.replacingOccurrences(of: "-", with: "")
         
         return str
     }

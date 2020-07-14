@@ -12,55 +12,85 @@ struct EditProfileView: View {
     
     @Binding var isEdit: Bool
     
+    @ObservedObject var profileViewModel = ProfileViewModel()
+    
+    @State private var pickedPhoto = UIImage()
+    
+    @State private var isPickingSource = false
+    @State private var isGallery = false
+    @State private var isCamera = false
+    
     var body: some View {
-        Form {
+        NavigationView {
+            Form {
                 HStack {
                     Spacer()
-                    Image("profile")
+                    VStack(spacing: 0) {
+                    Image(uiImage: profileViewModel.getPic(forKey: UserDefaultService.photoProfileKey))
                         .resizable()
                         .scaledToFit()
                         .clipShape(Circle())
-                        .frame(width: 150)
+                        .frame(width: 200)
                         .padding()
+                        .overlay(
+                            Image(uiImage: pickedPhoto)
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
+                                .frame(width: 200)
+                                .padding()
+                    )
+                        .onTapGesture {
+                            self.isPickingSource.toggle()
+                    }
+                        Text("Change your picture")
+                            .foregroundColor(.blue)
+                    }
                     Spacer()
                 }
-                HStack {
-                    Text("Name")
-                    Spacer()
-                    Text("Windy")
-                }
-                HStack {
-                    Text("Email")
-                    Spacer()
-                    Text("windywu812@gmail.com")
-                }
-                HStack {
-                    Text("Phone Number")
-                    Spacer()
-                    Text("089647527757")
-                }
-                HStack {
-                    Text("College")
-                    Spacer()
-                    Text("University Universal")
-                }
-                HStack {
-                    Text("Location")
-                    Spacer()
-                    Text("Batam")
-                }
+                
+                TextField("Enter your name", text: $profileViewModel.name)
+                TextField("Enter your email", text: $profileViewModel.email)
+                    .autocapitalization(.none)
+                TextField("Enter your phoneNumber", text: $profileViewModel.phoneNumber)
+                TextField("Enter your education", text: $profileViewModel.education)
+                TextField("Enter your location", text: $profileViewModel.location)
+                
             }
-            .navigationBarItems(leading:
-                Button(action: {
-                    self.isEdit.toggle()
-                }, label: {
-                    Text("Cancel")
-                }), trailing:
-                Button(action: {
-//                    self.saveData(self.username)
-                    
-                }, label: {
-                    Text("Done")
-                }))
+            .onTapGesture(perform: {
+                UIApplication.shared.endEditing()
+            })
+                .navigationBarTitle("Edit Profile", displayMode: .inline)
+                .navigationBarItems(leading:
+                    Button(action: {
+                        self.isEdit.toggle()
+                    }, label: {
+                        Text("Cancel")
+                    }), trailing:
+                    Button(action: {
+                        self.profileViewModel.updateProfile()
+                        self.profileViewModel.savePic(image: self.pickedPhoto, key: UserDefaultService.photoProfileKey)
+                        self.isEdit.toggle()
+                    }, label: {
+                        Text("Done")
+                    }))
         }
+        .sheet(isPresented: self.$isCamera) {
+            ImagePicker(selectedImage: self.$pickedPhoto, sourceType: .camera)
+        }
+        .sheet(isPresented: self.$isGallery) {
+            ImagePicker(selectedImage: self.$pickedPhoto, sourceType: .photoLibrary)
+        }
+        .actionSheet(isPresented: self.$isPickingSource) {
+            ActionSheet(title: Text(""), message: Text("Choose your photo source"), buttons: [
+                .default(Text("Take photo from gallery"), action: {
+                    self.isGallery.toggle()
+                }),
+                .default(Text("Take from camera"), action: {
+                    self.isCamera.toggle()
+                }),
+                .cancel(Text("Cancel"))
+            ])
+        }
+    }
 }

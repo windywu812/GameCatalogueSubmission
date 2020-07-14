@@ -6,26 +6,64 @@
 //  Copyright © 2020 Windy. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class UserDefaultService {
+        
+    static private let nameKey = "name"
+    static private let emailKey = "email"
+    static private let phoneNumberKey = "phoneNumber"
+    static private let educationKey = "education"
+    static private let locationKey = "locationKey"
+    static let photoProfileKey = "photoKey"
     
-    private let userDefault = UserDefaults.standard
-    
-    private let nameKey = "name"
-    
-    var name: String {
+    static var name: String {
         get {
-            userDefault.string(forKey: nameKey) ?? ""
+            return UserDefaults.standard.string(forKey: nameKey) ?? ""
         }
         set {
-            userDefault.set(newValue, forKey: nameKey)
+            UserDefaults.standard.set(newValue, forKey: nameKey)
         }
     }
     
-    func createNew(label: String, description: String) {
-        let userDefault = UserDefaults.standard
-        userDefault.set(description, forKey: label)
+    static var email: String {
+        get {
+            return UserDefaults.standard.string(forKey: emailKey) ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: emailKey)
+        }
+    }
+    
+    static var phoneNumber: String {
+        get {
+            return UserDefaults.standard.string(forKey: phoneNumberKey) ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: phoneNumberKey)
+        }
+    }
+    
+    static var education: String {
+        get {
+            return UserDefaults.standard.string(forKey: educationKey) ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: educationKey)
+        }
+    }
+    
+    static var location: String {
+        get {
+            return UserDefaults.standard.string(forKey: locationKey) ?? ""
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: locationKey)
+        }
+    }
+    
+    static func synchronize() {
+        UserDefaults.standard.synchronize()
     }
     
 }

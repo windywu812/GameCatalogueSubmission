@@ -12,55 +12,55 @@ struct ProfileView: View {
     
     @State private var isEdit: Bool = false
     
+    @ObservedObject private var profileViewModel = ProfileViewModel()
+    
     var body: some View {
-        NavigationView {
-            Form {
-                HStack {
-                    Spacer()
-                    Image("profile")
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(width: 150)
-                        .padding()
-                    Spacer()
-                }
-                HStack {
-                    Text("Name")
-                    Spacer()
-                    Text("Windy")
-                }
-                HStack {
-                    Text("Email")
-                    Spacer()
-                    Text("windywu812@gmail.com")
-                }
-                HStack {
-                    Text("Phone Number")
-                    Spacer()
-                    Text("089647527757")
-                }
-                HStack {
-                    Text("College")
-                    Spacer()
-                    Text("University Universal")
-                }
-                HStack {
-                    Text("Location")
-                    Spacer()
-                    Text("Batam")
-                }
+        Form {
+            HStack {
+                Spacer()
+                Image(uiImage: ((profileViewModel.getPic(forKey: UserDefaultService.photoProfileKey))))
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(width: 200)
+                    .padding()
+                Spacer()
             }
-            .navigationBarItems(trailing:
-                Button(action: {
-                    self.isEdit.toggle()
-                }, label: {
-                    Text("Edit")
-                })
-            )
-                .sheet(isPresented: self.$isEdit) {
-                    EditProfileView(isEdit: self.$isEdit)
+            HStack {
+                Text("Name")
+                Spacer()
+                Text(UserDefaultService.name)
             }
+            HStack {
+                Text("Email")
+                Spacer()
+                Text(UserDefaultService.email)
+            }
+            HStack {
+                Text("Phone Number")
+                Spacer()
+                Text(UserDefaultService.phoneNumber)
+            }
+            HStack {
+                Text("Education")
+                Spacer()
+                Text(UserDefaultService.education)
+            }
+            HStack {
+                Text("Location")
+                Spacer()
+                Text(UserDefaultService.location)
+            }
+        }
+        .navigationBarItems(trailing:
+            Button(action: {
+                self.isEdit.toggle()
+            }, label: {
+                Text("Edit")
+            })
+        )
+            .sheet(isPresented: self.$isEdit) { 
+                EditProfileView(isEdit: self.$isEdit)
         }
     }
 }

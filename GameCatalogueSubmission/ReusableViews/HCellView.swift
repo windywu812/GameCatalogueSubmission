@@ -30,6 +30,7 @@ struct HCellView: View {
             }
             .foregroundColor(.primary)
         }
+        .frame(width: size.width)
         .background(Color(UIColor.systemGray6))
         .cornerRadius(10)
     }

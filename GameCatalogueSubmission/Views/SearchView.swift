@@ -11,6 +11,7 @@ import SwiftUI
 struct SearchView: View {
     
     @ObservedObject var searchListGame = SearchGameViewModel()
+    @ObservedObject var listGame = ListGameViewModel()
     
     var body: some View {
         
@@ -27,14 +28,25 @@ struct SearchView: View {
             .cornerRadius(10)
             
             if !searchListGame.isSearching {
-                VStack(alignment: .leading) {
-                    ForEach(searchListGame.listGame) { game in
-                        NavigationLink(destination: DetailGameView(id: game.id)) {
-                            ListCellView(game: game)
+                if !searchListGame.listGame.isEmpty {
+                    VStack(alignment: .leading) {
+                        ForEach(searchListGame.listGame) { game in
+                            NavigationLink(destination: DetailGameView(id: game.id)) {
+                                ListCellView(game: game)
+                            }
                         }
                     }
+                    .padding(.top)
+                } else {
+                    VStack(alignment: .leading) {
+                        ForEach(listGame.listGames) { game in
+                            NavigationLink(destination: DetailGameView(id: game.id)) {
+                                ListCellView(game: game)
+                            }
+                        }
+                    }
+                    .padding(.top)
                 }
-                .padding(.top)
             } else {
                 ActivityIndicator()
                     .padding()
