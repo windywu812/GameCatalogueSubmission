@@ -26,7 +26,6 @@
 		2397FC2624BD69B200E4D462 /* GenreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC2524BD69B200E4D462 /* GenreResponse.swift */; };
 		2397FC2824BD69B700E4D462 /* GenreDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC2724BD69B700E4D462 /* GenreDetail.swift */; };
 		2397FC2A24BD69C000E4D462 /* ListGameWithGenreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC2924BD69C000E4D462 /* ListGameWithGenreResponse.swift */; };
-		2397FC2C24BD69C500E4D462 /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC2B24BD69C500E4D462 /* FavoriteModel.swift */; };
 		2397FC2E24BD69EA00E4D462 /* BestOfTheYearViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC2D24BD69EA00E4D462 /* BestOfTheYearViewModel.swift */; };
 		2397FC3024BD69F300E4D462 /* MostUpcomingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC2F24BD69F300E4D462 /* MostUpcomingViewModel.swift */; };
 		2397FC3224BD69FA00E4D462 /* AllTimeGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC3124BD69FA00E4D462 /* AllTimeGameViewModel.swift */; };
@@ -50,6 +49,10 @@
 		2397FC5824BD6A7400E4D462 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC5724BD6A7400E4D462 /* ActivityIndicator.swift */; };
 		2397FC5A24BD6A7900E4D462 /* ScaleFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2397FC5924BD6A7900E4D462 /* ScaleFont.swift */; };
 		2397FC6324BD6C1B00E4D462 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2397FC6224BD6C1B00E4D462 /* SDWebImageSwiftUI */; };
+		23B084B624BDCDA800EE1C09 /* HapticFeebackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B084B524BDCDA800EE1C09 /* HapticFeebackService.swift */; };
+		23B084B824BDCF0200EE1C09 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B084B724BDCF0200EE1C09 /* FavoriteCell.swift */; };
+		23B084BA24BDCFF500EE1C09 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B084B924BDCFF500EE1C09 /* UserDefaultService.swift */; };
+		23B084BC24BDD22B00EE1C09 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B084BB24BDD22B00EE1C09 /* EditProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,7 +77,6 @@
 		2397FC2524BD69B200E4D462 /* GenreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreResponse.swift; sourceTree = "<group>"; };
 		2397FC2724BD69B700E4D462 /* GenreDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDetail.swift; sourceTree = "<group>"; };
 		2397FC2924BD69C000E4D462 /* ListGameWithGenreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGameWithGenreResponse.swift; sourceTree = "<group>"; };
-		2397FC2B24BD69C500E4D462 /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
 		2397FC2D24BD69EA00E4D462 /* BestOfTheYearViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestOfTheYearViewModel.swift; sourceTree = "<group>"; };
 		2397FC2F24BD69F300E4D462 /* MostUpcomingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostUpcomingViewModel.swift; sourceTree = "<group>"; };
 		2397FC3124BD69FA00E4D462 /* AllTimeGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTimeGameViewModel.swift; sourceTree = "<group>"; };
@@ -97,6 +99,10 @@
 		2397FC5524BD6A6D00E4D462 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		2397FC5724BD6A7400E4D462 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		2397FC5924BD6A7900E4D462 /* ScaleFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleFont.swift; sourceTree = "<group>"; };
+		23B084B524BDCDA800EE1C09 /* HapticFeebackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeebackService.swift; sourceTree = "<group>"; };
+		23B084B724BDCF0200EE1C09 /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		23B084B924BDCFF500EE1C09 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		23B084BB24BDD22B00EE1C09 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +166,8 @@
 				2397FBFF24BD692500E4D462 /* SceneDelegate.swift */,
 				2397FC1624BD695100E4D462 /* CoreDataService.swift */,
 				2397FC1824BD695B00E4D462 /* Constant.swift */,
+				23B084B524BDCDA800EE1C09 /* HapticFeebackService.swift */,
+				23B084B924BDCFF500EE1C09 /* UserDefaultService.swift */,
 				2397FC1424BD694500E4D462 /* ApiService.swift */,
 			);
 			path = Services;
@@ -170,6 +178,7 @@
 			children = (
 				2397FC4D24BD6A5700E4D462 /* ListCellView.swift */,
 				2397FC4F24BD6A5C00E4D462 /* HCellView.swift */,
+				23B084B724BDCF0200EE1C09 /* FavoriteCell.swift */,
 				2397FC5124BD6A6100E4D462 /* RatingView.swift */,
 				2397FC5324BD6A6700E4D462 /* GenreCellView.swift */,
 				2397FC5524BD6A6D00E4D462 /* VideoPlayer.swift */,
@@ -191,6 +200,7 @@
 				2397FC4724BD6A4300E4D462 /* GenreView.swift */,
 				2397FC4924BD6A4A00E4D462 /* GenreDetailView.swift */,
 				2397FC4B24BD6A4F00E4D462 /* ProfileView.swift */,
+				23B084BB24BDD22B00EE1C09 /* EditProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,7 +223,6 @@
 				2397FC2524BD69B200E4D462 /* GenreResponse.swift */,
 				2397FC2724BD69B700E4D462 /* GenreDetail.swift */,
 				2397FC2924BD69C000E4D462 /* ListGameWithGenreResponse.swift */,
-				2397FC2B24BD69C500E4D462 /* FavoriteModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23B084BC24BDD22B00EE1C09 /* EditProfileView.swift in Sources */,
 				2397FC1E24BD699200E4D462 /* ViewExtension.swift in Sources */,
 				2397FC1924BD695B00E4D462 /* Constant.swift in Sources */,
 				2397FC5824BD6A7400E4D462 /* ActivityIndicator.swift in Sources */,
@@ -331,11 +341,13 @@
 				2397FC1C24BD698C00E4D462 /* StringExtension.swift in Sources */,
 				2397FC2E24BD69EA00E4D462 /* BestOfTheYearViewModel.swift in Sources */,
 				2397FC2824BD69B700E4D462 /* GenreDetail.swift in Sources */,
+				23B084B624BDCDA800EE1C09 /* HapticFeebackService.swift in Sources */,
 				2397FC3224BD69FA00E4D462 /* AllTimeGameViewModel.swift in Sources */,
 				2397FC3024BD69F300E4D462 /* MostUpcomingViewModel.swift in Sources */,
 				2397FC4224BD6A3300E4D462 /* DetailGameView.swift in Sources */,
 				2397FC0524BD692500E4D462 /* ContentView.swift in Sources */,
 				2397FC3824BD6A0E00E4D462 /* GenreViewModel.swift in Sources */,
+				23B084BA24BDCFF500EE1C09 /* UserDefaultService.swift in Sources */,
 				2397FC2224BD69A500E4D462 /* GameResponse.swift in Sources */,
 				2397FC5024BD6A5C00E4D462 /* HCellView.swift in Sources */,
 				2397FC3A24BD6A1600E4D462 /* ListGameWithGenreViewModel.swift in Sources */,
@@ -346,8 +358,8 @@
 				2397FC4424BD6A3900E4D462 /* SearchView.swift in Sources */,
 				2349D2CE24BD7533007D4340 /* FavoriteView.swift in Sources */,
 				2397FC0024BD692500E4D462 /* SceneDelegate.swift in Sources */,
+				23B084B824BDCF0200EE1C09 /* FavoriteCell.swift in Sources */,
 				2397FC2624BD69B200E4D462 /* GenreResponse.swift in Sources */,
-				2397FC2C24BD69C500E4D462 /* FavoriteModel.swift in Sources */,
 				2397FC4E24BD6A5700E4D462 /* ListCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

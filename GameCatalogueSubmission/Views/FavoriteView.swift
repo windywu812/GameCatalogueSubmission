@@ -7,39 +7,51 @@
 //
 
 import SwiftUI
-
-extension Favorite: Identifiable {}
+import SDWebImageSwiftUI
 
 struct FavoriteView: View {
     
-    @ObservedObject var favoriteViewModel = FavoriteViewModel()
+//    @State private var refreshing = false
+//    private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
+    
+    @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         VStack {
-            if favoriteViewModel.favoriteDetailList.isEmpty {
+            if favorites.isEmpty {
                 Text("No Favorites")
                     .font(.title)
                     .foregroundColor(.secondary)
-                    .bold()
             } else {
                 List {
-                    ForEach(favoriteViewModel.favoriteDetailList) { favorite in
-                        ZStack {
-                            NavigationLink(destination: DetailGameView(id: favorite.id)) {
-                                ListCellView(game: favorite)
-                            }
-                            .buttonStyle(PlainButtonStyle())
+                    ForEach(favorites) { favorite in
+                        ZStack(alignment: .leading) {
+                            
+                            FavoriteCell(game: favorite)
+                            NavigationLink(destination: DetailGameView(id: Int(favorite.id), isFavorite: true)) {
+                                EmptyView()
+                            }.buttonStyle(PlainButtonStyle())
+                            
                         }
-                    }
+                        
+                    }.onDelete(perform: deleteFavorite)
+                        
                 }
-                .onAppear {
-                    UITableView.appearance().separatorStyle = .none
-                }
+                .navigationBarItems(trailing: EditButton())
             }
         }
-        .navigationBarItems(trailing: EditButton())
     }
     
+    func deleteFavorite(at offsets: IndexSet) {
+        for offset in offsets {
+            let favorite = favorites[offset]
+            
+            moc.delete(favorite)
+        }
+        
+        try? moc.save()
+    }
 }
 
 struct FavoriteView_Previews: PreviewProvider {

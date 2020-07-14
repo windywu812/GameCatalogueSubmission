@@ -1,20 +1,19 @@
 //
-//  ProfileView.swift
+//  EditProfileView.swift
 //  GameCatalogueSubmission
 //
-//  Created by Windy on 03/07/20.
+//  Created by Windy on 14/07/20.
 //  Copyright © 2020 Windy. All rights reserved.
 //
 
 import SwiftUI
 
-struct ProfileView: View {
+struct EditProfileView: View {
     
-    @State private var isEdit: Bool = false
+    @Binding var isEdit: Bool
     
     var body: some View {
-        NavigationView {
-            Form {
+        Form {
                 HStack {
                     Spacer()
                     Image("profile")
@@ -51,22 +50,17 @@ struct ProfileView: View {
                     Text("Batam")
                 }
             }
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading:
                 Button(action: {
                     self.isEdit.toggle()
                 }, label: {
-                    Text("Edit")
-                })
-            )
-                .sheet(isPresented: self.$isEdit) {
-                    EditProfileView(isEdit: self.$isEdit)
-            }
+                    Text("Cancel")
+                }), trailing:
+                Button(action: {
+//                    self.saveData(self.username)
+                    
+                }, label: {
+                    Text("Done")
+                }))
         }
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
 }

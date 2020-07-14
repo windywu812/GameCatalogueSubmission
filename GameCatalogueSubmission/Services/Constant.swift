@@ -19,6 +19,9 @@ enum K {
     static let entityName = "Favorite"
     static let idFavorite = "id"
     static let nameFavorite = "name"
+    static let releasedDateFavorite = "releasedDate"
+    static let bgImageFavorite = "backgroundImage"
+    static let ratingFavorite = "rating"
  
 }
 

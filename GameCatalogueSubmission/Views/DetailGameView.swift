@@ -12,11 +12,14 @@ import AVKit
 
 struct DetailGameView: View {
     
-    @State private var showMore: Bool = false
     @ObservedObject private var detailViewModel: DetailGameViewModel
+    @State private var showMore: Bool = false
     
-    init(id: Int) {
+    var isFavorite: Bool
+    
+    init(id: Int, isFavorite: Bool = false) {
         detailViewModel = DetailGameViewModel(id: id)
+        self.isFavorite = isFavorite
     }
     
     var body: some View {
@@ -193,15 +196,20 @@ struct DetailGameView: View {
         .animation(.default)
         .navigationBarItems(trailing:
             Button(action: {
-                if let id = self.detailViewModel.detailGame?.id, let name = self.detailViewModel.detailGame?.name {
-                    CoreDataService.instance.saveData(id: id, name: name)
+                if let detail = self.detailViewModel.detailGame {
+                    CoreDataService().saveData(
+                        id: detail.id,
+                        name: detail.name ?? "",
+                        rating: detail.rating ?? 0,
+                        backgroundImage: detail.backgroundImage ?? "",
+                        releasedDate: detail.releaseDate ?? "")
+                    HapticFeedback().simpleHaptic()
                 }
-                print(CoreDataService.instance.fetchData(completion: { (x) in
-                    print(x)
-                }))
             }, label: {
-                Text("Add to favorite")
+                Text(self.isFavorite ? "" : "Add to favorite")
             })
         )
     }
 }
+
+
