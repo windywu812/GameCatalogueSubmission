@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 struct ListCellView: View {
     
     var game: DetailGame
-    
+        
     var body: some View {
         VStack(alignment: .leading) {
             HStack {

@@ -46,13 +46,13 @@ struct ContentView: View {
                 Text("Search")
             }
             
-//            NavigationView {
-//                FavoriteView()
-//                    .navigationBarTitle("Favorites")
-//            }.tabItem {
-//                Image(systemName: "heart.fill")
-//                Text("Favorite")
-//            }
+            NavigationView {
+                FavoriteView()
+                    .navigationBarTitle("Favorites")
+            }.tabItem {
+                Image(systemName: "heart.fill")
+                Text("Favorite")
+            }
             
             NavigationView {
                 ProfileView()

@@ -37,12 +37,12 @@ struct RatingView: View {
                     Image(systemName: "star")
                         .resizable()
                         .frame(width: self.size, height: self.size)
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.primary)
                 }
             }
             Rectangle()
                 .frame(width: (((self.rating / 5)) * size * 5) + space, height: size)
-                .foregroundColor(.yellow)
+                .foregroundColor(.primary)
                 .mask(
                     HStack(spacing: 4) {
                         ForEach(0..<5) { _ in

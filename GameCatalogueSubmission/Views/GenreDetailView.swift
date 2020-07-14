@@ -54,7 +54,7 @@ struct GenreDetailView: View {
                         NavigationLink(destination: SeeAllView(listGames: self.listGame.listGame, title: "All games")) {
                             Text("See All")
                         }
-                    }
+                    }.padding(.trailing, 20)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
                             ForEach(self.listGame.listGame) { game in

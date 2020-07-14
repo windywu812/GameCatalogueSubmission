@@ -66,7 +66,7 @@ struct DetailGameView: View {
                         VStack(alignment: .leading) {
                             Text("Gameplay")
                                 .bold()
-                            VideoPlayer(url: (detailViewModel.detailGame?.clip!.clip)!)
+                            VideoPlayer(url: detailViewModel.detailGame?.clip!.clip ?? "")
                                 .frame(width: K.widthOfParentSize - 40, height: 220)
                                 .cornerRadius(15)
                         }.padding(.vertical, 16)

@@ -1,24 +1,50 @@
-////
-////  FavoriteView.swift
-////  GameCatalogueSubmission
-////
-////  Created by Windy on 14/07/20.
-////  Copyright © 2020 Windy. All rights reserved.
-////
 //
-//import SwiftUI
+//  FavoriteView.swift
+//  GameCatalogueSubmission
 //
-//struct FavoriteView: View {
-//    
-//    @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) private var favoriteList: FetchedResults<Favorite>
-//    
-//    var body: some View {
-//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//    }
-//}
+//  Created by Windy on 14/07/20.
+//  Copyright © 2020 Windy. All rights reserved.
 //
-//struct FavoriteView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FavoriteView()
-//    }
-//}
+
+import SwiftUI
+
+extension Favorite: Identifiable {}
+
+struct FavoriteView: View {
+    
+    @ObservedObject var favoriteViewModel = FavoriteViewModel()
+    
+    var body: some View {
+        VStack {
+            if favoriteViewModel.favoriteDetailList.isEmpty {
+                Text("No Favorites")
+                    .font(.title)
+                    .foregroundColor(.secondary)
+                    .bold()
+            } else {
+                List {
+                    ForEach(favoriteViewModel.favoriteDetailList) { favorite in
+                        ZStack {
+                            NavigationLink(destination: DetailGameView(id: favorite.id)) {
+                                ListCellView(game: favorite)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                }
+                .onAppear {
+                    UITableView.appearance().separatorStyle = .none
+                }
+            }
+        }
+        .navigationBarItems(trailing: EditButton())
+    }
+    
+}
+
+struct FavoriteView_Previews: PreviewProvider {
+    static var previews: some View {
+        FavoriteView()
+    }
+}
+
