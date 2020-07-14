@@ -54,7 +54,6 @@
 		23B084BA24BDCFF500EE1C09 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B084B924BDCFF500EE1C09 /* UserDefaultService.swift */; };
 		23B084BC24BDD22B00EE1C09 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B084BB24BDD22B00EE1C09 /* EditProfileView.swift */; };
 		23B084C024BDEE6F00EE1C09 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B084BF24BDEE6F00EE1C09 /* ImagePicker.swift */; };
-		23B084C224BE0CAA00EE1C09 /* dummy.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B084C124BE0CAA00EE1C09 /* dummy.png */; };
 		23B084C424BE130000EE1C09 /* ListGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B084C324BE130000EE1C09 /* ListGameViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,7 +106,6 @@
 		23B084B924BDCFF500EE1C09 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
 		23B084BB24BDD22B00EE1C09 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		23B084BF24BDEE6F00EE1C09 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		23B084C124BE0CAA00EE1C09 /* dummy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dummy.png; path = ../../../../../Downloads/dummy.png; sourceTree = "<group>"; };
 		23B084C324BE130000EE1C09 /* ListGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				2397FC0624BD692700E4D462 /* Assets.xcassets */,
-				23B084C124BE0CAA00EE1C09 /* dummy.png */,
 				2397FC0B24BD692700E4D462 /* LaunchScreen.storyboard */,
 				2397FC0E24BD692700E4D462 /* Info.plist */,
 				2397FC0124BD692500E4D462 /* GameCatalogueSubmission.xcdatamodeld */,
@@ -315,7 +312,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23B084C224BE0CAA00EE1C09 /* dummy.png in Resources */,
 				2397FC0D24BD692700E4D462 /* LaunchScreen.storyboard in Resources */,
 				2397FC0A24BD692700E4D462 /* Preview Assets.xcassets in Resources */,
 				2397FC0724BD692700E4D462 /* Assets.xcassets in Resources */,

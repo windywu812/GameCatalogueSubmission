@@ -15,10 +15,7 @@ struct EditProfileView: View {
     @ObservedObject var profileViewModel = ProfileViewModel()
     
     @State private var pickedPhoto = UIImage()
-    
-    @State private var isPickingSource = false
-    @State private var isGallery = false
-    @State private var isCamera = false
+    @State private var isPicking = false
     
     var body: some View {
         NavigationView {
@@ -26,23 +23,23 @@ struct EditProfileView: View {
                 HStack {
                     Spacer()
                     VStack(spacing: 0) {
-                    Image(uiImage: profileViewModel.getPic(forKey: UserDefaultService.photoProfileKey))
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(Circle())
-                        .frame(width: 200)
-                        .padding()
-                        .overlay(
-                            Image(uiImage: pickedPhoto)
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(Circle())
-                                .frame(width: 200)
-                                .padding()
-                    )
-                        .onTapGesture {
-                            self.isPickingSource.toggle()
-                    }
+                        Image(uiImage: profileViewModel.getPic(forKey: UserDefaultService.photoProfileKey))
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(Circle())
+                            .frame(width: 200)
+                            .padding()
+                            .overlay(
+                                Image(uiImage: pickedPhoto)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(Circle())
+                                    .frame(width: 200)
+                                    .padding()
+                        )
+                            .onTapGesture {
+                                self.isPicking.toggle()
+                        }
                         Text("Change your picture")
                             .foregroundColor(.blue)
                     }
@@ -75,22 +72,8 @@ struct EditProfileView: View {
                         Text("Done")
                     }))
         }
-        .sheet(isPresented: self.$isCamera) {
-            ImagePicker(selectedImage: self.$pickedPhoto, sourceType: .camera)
-        }
-        .sheet(isPresented: self.$isGallery) {
-            ImagePicker(selectedImage: self.$pickedPhoto, sourceType: .photoLibrary)
-        }
-        .actionSheet(isPresented: self.$isPickingSource) {
-            ActionSheet(title: Text(""), message: Text("Choose your photo source"), buttons: [
-                .default(Text("Take photo from gallery"), action: {
-                    self.isGallery.toggle()
-                }),
-                .default(Text("Take from camera"), action: {
-                    self.isCamera.toggle()
-                }),
-                .cancel(Text("Cancel"))
-            ])
+        .sheet(isPresented: self.$isPicking) {
+            ImagePicker(selectedImage: self.$pickedPhoto)
         }
     }
 }

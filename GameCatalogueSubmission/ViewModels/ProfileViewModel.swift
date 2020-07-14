@@ -24,16 +24,13 @@ class ProfileViewModel: ObservableObject {
         UserDefaultService.education = self.education
         UserDefaultService.location = self.location
         
-        
         UserDefaultService.synchronize()
     }
     
     func savePic(image: UIImage, key: String) {
         if let pngRepresentation = image.pngData() {
-            
             UserDefaults.standard.set(pngRepresentation, forKey: key)
         }
-        
     }
     
     func getPic(forKey key: String) -> UIImage {
