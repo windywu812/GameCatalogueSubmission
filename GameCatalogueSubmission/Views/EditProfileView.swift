@@ -16,6 +16,9 @@ struct EditProfileView: View {
     
     @State private var pickedPhoto = UIImage()
     @State private var isPicking = false
+    @State private var isPickingSource = false
+    @State private var isCamera = false
+    @State private var isGallery = false
     
     var body: some View {
         NavigationView {
@@ -38,7 +41,7 @@ struct EditProfileView: View {
                                     .padding()
                         )
                             .onTapGesture {
-                                self.isPicking.toggle()
+                                self.isPickingSource.toggle()
                         }
                         Text("Change your picture")
                             .foregroundColor(.blue)
@@ -71,9 +74,22 @@ struct EditProfileView: View {
                     }, label: {
                         Text("Done")
                     }))
+                .actionSheet(isPresented: self.$isPickingSource) {
+                    ActionSheet(title: Text(""), message: Text("Choose your photo's source"), buttons: [
+                        .default(Text("Take photo from camera"), action: {
+                            self.isCamera.toggle()
+                            self.isPicking.toggle()
+                        }),
+                        .default(Text("Take photo from gallery"), action: {
+                            self.isGallery.toggle()
+                            self.isPicking.toggle()
+                        }),
+                        .cancel(Text("Cancel"))
+                    ])
+            }
         }
         .sheet(isPresented: self.$isPicking) {
-            ImagePicker(selectedImage: self.$pickedPhoto)
+            ImagePicker(selectedImage: self.$pickedPhoto, isCamera: self.$isCamera, isGallery: self.$isGallery)
         }
     }
 }

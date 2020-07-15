@@ -52,7 +52,10 @@ class ApiService {
         
         let url = URL(string: "\(K.urlGames)/\(id)")
         
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+        let configuration = URLSessionConfiguration.default
+        configuration.waitsForConnectivity = true
+        
+        URLSession(configuration: configuration).dataTask(with: url!) { (data, response, error) in
             if let data = data {
                 do {
                     let responseData = try JSONDecoder().decode(DetailGame.self, from: data)
@@ -67,9 +70,7 @@ class ApiService {
                     }
                 }
             } else if let error = error  {
-                DispatchQueue.main.async {
-                    completion(.failure(error))
-                }
+                completion(.failure(error))
             }
             
         }.resume()
@@ -147,7 +148,10 @@ class ApiService {
         
         let url = URL(string: "\(K.urlGenre)/\(id)")
         
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+        let configuration = URLSessionConfiguration.default
+        configuration.waitsForConnectivity = true
+        
+        URLSession(configuration: configuration).dataTask(with: url!) { (data, response, error) in
             if let data = data {
                 do {
                     let responseData = try JSONDecoder().decode(GenreDetail.self, from: data)

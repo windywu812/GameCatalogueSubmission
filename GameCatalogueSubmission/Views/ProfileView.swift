@@ -11,7 +11,6 @@ import SwiftUI
 struct ProfileView: View {
     
     @State private var isEdit: Bool = false
-    
     @ObservedObject private var profileViewModel = ProfileViewModel()
     
     var body: some View {

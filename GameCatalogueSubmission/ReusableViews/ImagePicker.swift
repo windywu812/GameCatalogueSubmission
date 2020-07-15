@@ -13,11 +13,17 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     @Binding var selectedImage: UIImage
     @Environment(\.presentationMode) private var presentationMode
+    @Binding var isCamera: Bool
+    @Binding var isGallery: Bool
         
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
+        if isCamera {
+            imagePicker.sourceType = .camera
+        } else if isGallery {
+            imagePicker.sourceType = .photoLibrary
+        }
         imagePicker.delegate = context.coordinator
         
         return imagePicker
@@ -45,6 +51,8 @@ struct ImagePicker: UIViewControllerRepresentable {
                 parent.selectedImage = image
             }
             
+            parent.isGallery = false
+            parent.isCamera = false
             parent.presentationMode.wrappedValue.dismiss()
         }
         

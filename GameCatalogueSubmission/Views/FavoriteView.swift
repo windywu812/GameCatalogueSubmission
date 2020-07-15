@@ -10,10 +10,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct FavoriteView: View {
-    
-//    @State private var refreshing = false
-//    private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-    
+        
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: []) var favorites: FetchedResults<Favorite>
     @Environment(\.managedObjectContext) var moc
     
@@ -46,12 +43,11 @@ struct FavoriteView: View {
     func deleteFavorite(at offsets: IndexSet) {
         for offset in offsets {
             let favorite = favorites[offset]
-            
             moc.delete(favorite)
         }
-        
         try? moc.save()
     }
+    
 }
 
 struct FavoriteView_Previews: PreviewProvider {
