@@ -36,7 +36,7 @@ struct DetailGameView: View {
                         .resizable()
                         .frame(width: K.widthOfParentSize - 40, height: 212)
                         .cornerRadius(15)
-                    HStack(alignment: .center) {
+                    HStack(alignment: .top) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Rating")
                                 .foregroundColor(.secondary)
@@ -185,6 +185,7 @@ struct DetailGameView: View {
             .padding(.top, -50)
         }
         .animation(.default)
+        .navigationBarTitle("", displayMode: .large)
         .navigationBarItems(trailing:
             Button(action: {
                 if let detail = self.detailViewModel.detailGame {

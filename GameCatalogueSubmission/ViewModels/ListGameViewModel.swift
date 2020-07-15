@@ -17,7 +17,7 @@ class ListGameViewModel: ObservableObject {
     }
         
     private func fetchListGames() {
-        ApiService().fetchListGames(ordering: "-added") { (gameResponse) in
+        ApiService().fetchListGames(ordering: "-rating") { (gameResponse) in
             switch gameResponse {
             case .success(let result):
                 self.listGames = result.listGames

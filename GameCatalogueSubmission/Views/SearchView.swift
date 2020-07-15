@@ -12,7 +12,7 @@ struct SearchView: View {
     
     @ObservedObject var searchListGame = SearchGameViewModel()
     @ObservedObject var listGame = ListGameViewModel()
-    
+        
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false) {
@@ -36,16 +36,21 @@ struct SearchView: View {
                             }
                         }
                     }
-                    .padding(.top)
+                    .padding(.top, 8)
                 } else {
-                    VStack(alignment: .leading) {
-                        ForEach(listGame.listGames) { game in
-                            NavigationLink(destination: DetailGameView(id: game.id)) {
-                                ListCellView(game: game)
+                    if !listGame.listGames.isEmpty {
+                        VStack(alignment: .leading) {
+                            ForEach(listGame.listGames) { game in
+                                NavigationLink(destination: DetailGameView(id: game.id)) {
+                                    ListCellView(game: game)
+                                }
                             }
                         }
+                        .padding(.top, 8)
+                    } else {
+                        ActivityIndicator()
+                            .padding()
                     }
-                    .padding(.top)
                 }
             } else {
                 ActivityIndicator()
@@ -55,10 +60,10 @@ struct SearchView: View {
         }
         .padding(.horizontal, 20)
         .onTapGesture(perform: { UIApplication.shared.endEditing() })
+       
         .alert(isPresented: $searchListGame.isNotFound) {
-            Alert(title: Text("Not Found"), message: Text("Please enter different title"), dismissButton: .default(Text("Okay"), action: {
-                self.searchListGame.isNotFound.toggle()
-            }))
+            Alert(title: Text("Not Found"), message: Text("Please enter different title"), dismissButton: .default(Text("Okay"))
+            )
         }
     }
 }

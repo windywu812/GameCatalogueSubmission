@@ -73,6 +73,7 @@ struct EditProfileView: View {
                         self.isEdit.toggle()
                     }, label: {
                         Text("Done")
+                            .bold()
                     }))
                 .actionSheet(isPresented: self.$isPickingSource) {
                     ActionSheet(title: Text(""), message: Text("Choose your photo's source"), buttons: [
