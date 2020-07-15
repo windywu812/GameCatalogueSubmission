@@ -34,13 +34,10 @@ class ProfileViewModel: ObservableObject {
     }
     
     func getPic(forKey key: String) -> UIImage {
-        
         if let imageData = UserDefaults.standard.object(forKey: key) as? Data,
             let image = UIImage(data: imageData) {
-            
             return image
         }
-        
         return UIImage(named: "dummy")!
     }
     

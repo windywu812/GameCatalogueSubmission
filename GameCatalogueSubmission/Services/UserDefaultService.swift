@@ -9,13 +9,23 @@
 import UIKit
 
 class UserDefaultService {
-        
+    
+    static private let hasLaunchedKey = "hasLaunched"
     static private let nameKey = "name"
     static private let emailKey = "email"
     static private let phoneNumberKey = "phoneNumber"
     static private let educationKey = "education"
     static private let locationKey = "locationKey"
     static let photoProfileKey = "photoKey"
+    
+    static var hasLaunched: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: hasLaunchedKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: hasLaunchedKey)
+        }
+    }
     
     static var name: String {
         get {

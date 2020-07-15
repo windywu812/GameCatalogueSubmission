@@ -22,7 +22,7 @@ class DetailGameViewModel: ObservableObject {
             case .success(let detailGame):
                 self.detailGame = detailGame
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
                 self.detailGame = nil
             }
         }

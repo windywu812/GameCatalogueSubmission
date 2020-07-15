@@ -23,7 +23,7 @@ class MostUpcomingViewModel: ObservableObject {
             case .success(let result):
                 self.listGames = result.listGames
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
                 self.listGames = []
             }
         }

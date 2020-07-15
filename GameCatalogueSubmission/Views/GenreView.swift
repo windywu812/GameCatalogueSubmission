@@ -24,9 +24,3 @@ struct GenreView: View {
         .padding(.horizontal, 20)
     }
 }
-
-struct GenreView_Previews: PreviewProvider {
-    static var previews: some View {
-        GenreView()
-    }
-}

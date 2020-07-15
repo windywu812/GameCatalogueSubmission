@@ -22,7 +22,7 @@ class ListGameWithGenreViewModel: ObservableObject {
             case .success(let result):
                 self.listGame = result.results
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
                 self.listGame = []
             }
         }

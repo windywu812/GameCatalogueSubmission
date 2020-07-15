@@ -28,7 +28,7 @@ struct GamesView: View {
                         Text("See All")
                     }
                 }
-                    .padding(.trailing, 20)
+                .padding(.trailing, 20)
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16) {

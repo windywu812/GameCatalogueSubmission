@@ -34,7 +34,7 @@ class SearchGameViewModel: ObservableObject {
                         self.isSearching = false
                     }
                 case .failure(let error):
-                    print(error)
+                    print(error.localizedDescription)
                     self.listGame = []
                     self.isNotFound.toggle()
                     self.searchText = ""

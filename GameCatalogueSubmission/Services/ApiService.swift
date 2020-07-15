@@ -15,14 +15,16 @@ class ApiService {
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         
-        var urlComponent = URLComponents(string: K.urlGames)
-        urlComponent?.queryItems = [
+        guard var urlComponent = URLComponents(string: K.urlGames) else { return }
+        urlComponent.queryItems = [
             URLQueryItem(name: "search", value: search),
             URLQueryItem(name: "dates", value: dates),
             URLQueryItem(name: "ordering", value: ordering)
         ]
         
-        URLSession(configuration: configuration).dataTask(with: (urlComponent?.url)!) { (data, response, error) in
+        guard let urlComponentString = urlComponent.url else { return }
+        
+        URLSession(configuration: configuration).dataTask(with: urlComponentString) { (data, response, error) in
             
             guard let responseHTTP = response as? HTTPURLResponse else { return }
             
@@ -34,9 +36,7 @@ class ApiService {
                             completion(.success(response))
                         }
                     } catch let error {
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
+                        completion(.failure(error))
                     }
                 } else if let error = error {
                     completion(.failure(error))
@@ -50,29 +50,24 @@ class ApiService {
     
     func fetchGameDetail(id: Int, completion: @escaping (Result<DetailGame, Error>) -> ()) {
         
-        let url = URL(string: "\(K.urlGames)/\(id)")
+        guard let url = URL(string: "\(K.urlGames)/\(id)") else { return }
         
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         
-        URLSession(configuration: configuration).dataTask(with: url!) { (data, response, error) in
+        URLSession(configuration: configuration).dataTask(with: url) { (data, response, error) in
             if let data = data {
                 do {
                     let responseData = try JSONDecoder().decode(DetailGame.self, from: data)
-                    
                     DispatchQueue.main.async {
                         completion(.success(responseData))
                     }
-                    
                 } catch let error {
-                    DispatchQueue.main.async {
-                        completion(.failure(error))
-                    }
+                    completion(.failure(error))
                 }
             } else if let error = error  {
                 completion(.failure(error))
             }
-            
         }.resume()
     }
     
@@ -81,12 +76,14 @@ class ApiService {
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         
-        var urlComponent = URLComponents(string: K.urlGames)
-        urlComponent?.queryItems = [
+        guard var urlComponent = URLComponents(string: K.urlGames) else { return }
+        urlComponent.queryItems = [
             URLQueryItem(name: "genres", value: id)
         ]
         
-        URLSession(configuration: configuration).dataTask(with: (urlComponent?.url)!) { (data, response, error) in
+        guard let urlComponentString = urlComponent.url else { return }
+        
+        URLSession(configuration: configuration).dataTask(with: urlComponentString) { (data, response, error) in
             
             guard let responseHTTP = response as? HTTPURLResponse else { return }
             
@@ -98,9 +95,7 @@ class ApiService {
                             completion(.success(response))
                         }
                     } catch let error {
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
+                        completion(.failure(error))
                     }
                 } else if let error = error {
                     completion(.failure(error))
@@ -118,9 +113,12 @@ class ApiService {
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         
-        URLSession(configuration: configuration).dataTask(with: URL(string: K.urlGenre)!) { (data, response, error) in
+        guard let urlString = URL(string: K.urlGenre) else { return }
+        
+        URLSession(configuration: configuration).dataTask(with: urlString) { (data, response, error) in
             
             guard let responseHTTP = response as? HTTPURLResponse else { return }
+            
             if responseHTTP.statusCode == 200 {
                 if let data = data {
                     do {
@@ -129,9 +127,7 @@ class ApiService {
                             completion(.success(response))
                         }
                     } catch let error {
-                        DispatchQueue.main.async {
-                            completion(.failure(error))
-                        }
+                        completion(.failure(error))
                     }
                 } else if let error = error {
                     completion(.failure(error))
@@ -146,31 +142,24 @@ class ApiService {
     
     func fetchGenreDetail(id: Int, completion: @escaping (Result<GenreDetail, Error>) -> ()) {
         
-        let url = URL(string: "\(K.urlGenre)/\(id)")
+        guard let urlString = URL(string: "\(K.urlGenre)/\(id)") else { return }
         
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         
-        URLSession(configuration: configuration).dataTask(with: url!) { (data, response, error) in
+        URLSession(configuration: configuration).dataTask(with: urlString) { (data, response, error) in
             if let data = data {
                 do {
                     let responseData = try JSONDecoder().decode(GenreDetail.self, from: data)
-                    
                     DispatchQueue.main.async {
                         completion(.success(responseData))
                     }
-                    
                 } catch let error {
-                    DispatchQueue.main.async {
-                        completion(.failure(error))
-                    }
-                }
-            } else if let error = error {
-                DispatchQueue.main.async {
                     completion(.failure(error))
                 }
+            } else if let error = error {
+                completion(.failure(error))
             }
-            
         }.resume()
     }
     

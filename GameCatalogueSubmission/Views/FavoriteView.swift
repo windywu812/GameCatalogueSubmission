@@ -24,16 +24,12 @@ struct FavoriteView: View {
                 List {
                     ForEach(favorites) { favorite in
                         ZStack(alignment: .leading) {
-                            
                             FavoriteCell(game: favorite)
                             NavigationLink(destination: DetailGameView(id: Int(favorite.id), isFavorite: true)) {
                                 EmptyView()
                             }.buttonStyle(PlainButtonStyle())
-                            
                         }
-                        
                     }.onDelete(perform: deleteFavorite)
-                        
                 }
                 .navigationBarItems(trailing: EditButton())
             }
@@ -49,10 +45,3 @@ struct FavoriteView: View {
     }
     
 }
-
-struct FavoriteView_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoriteView()
-    }
-}
-

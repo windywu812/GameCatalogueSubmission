@@ -25,9 +25,3 @@ struct SeeAllView: View {
         .navigationBarTitle("\(title)", displayMode: .inline)
     }
 }
-
-struct SeeAllView_Previews: PreviewProvider {
-    static var previews: some View {
-        SeeAllView()
-    }
-}

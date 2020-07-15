@@ -28,14 +28,14 @@ struct EditProfileView: View {
                     VStack(spacing: 0) {
                         Image(uiImage: profileViewModel.getPic(forKey: UserDefaultService.photoProfileKey))
                             .resizable()
-                            .scaledToFit()
+                            .scaledToFill()
                             .clipShape(Circle())
                             .frame(width: 200)
                             .padding()
                             .overlay(
                                 Image(uiImage: pickedPhoto)
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
                                     .clipShape(Circle())
                                     .frame(width: 200)
                                     .padding()

@@ -19,7 +19,7 @@ struct ProfileView: View {
                 Spacer()
                 Image(uiImage: ((profileViewModel.getPic(forKey: UserDefaultService.photoProfileKey))))
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
                     .clipShape(Circle())
                     .frame(width: 200)
                     .padding()
@@ -61,11 +61,5 @@ struct ProfileView: View {
             .sheet(isPresented: self.$isEdit) { 
                 EditProfileView(isEdit: self.$isEdit)
         }
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
     }
 }

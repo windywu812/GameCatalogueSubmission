@@ -36,7 +36,6 @@ struct DetailGameView: View {
                         .resizable()
                         .frame(width: K.widthOfParentSize - 40, height: 212)
                         .cornerRadius(15)
-                    
                     HStack(alignment: .center) {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Rating")
@@ -64,7 +63,6 @@ struct DetailGameView: View {
                                 .bold()
                         }
                     }.padding(.top)
-                    
                     if detailViewModel.detailGame?.clip != nil {
                         VStack(alignment: .leading) {
                             Text("Gameplay")
@@ -74,15 +72,13 @@ struct DetailGameView: View {
                                 .cornerRadius(15)
                         }.padding(.vertical, 16)
                     }
-                    
                     VStack(alignment: .leading) {
                         if self.detailViewModel.detailGame?.description != nil {
                             Text("About")
                                 .fontWeight(.bold)
                                 .padding(.vertical, 8)
-                            Text("\((detailViewModel.detailGame?.description!.clearTheString())!)")
+                            Text("\((detailViewModel.detailGame?.description!.clearTheString()) ?? "")")
                                 .lineLimit(self.showMore == false ? 4 : nil)
-                            
                             if self.showMore == false {
                                 Button(action: {
                                     withAnimation {
@@ -95,7 +91,6 @@ struct DetailGameView: View {
                         }
                     }.padding(.bottom)
                 }
-                
                 VStack(alignment: .leading, spacing: 8) {
                     VStack {
                         if detailViewModel.detailGame?.releaseDate != nil {
@@ -103,7 +98,7 @@ struct DetailGameView: View {
                                 Text("Release date")
                                     .foregroundColor(.secondary)
                                 Spacer()
-                                Text("\((detailViewModel.detailGame?.releaseDate!.changeDateFormat())!)")
+                                Text("\((detailViewModel.detailGame?.releaseDate!.changeDateFormat()) ?? "")")
                             }
                         }
                         if detailViewModel.detailGame?.rating != nil {
@@ -112,11 +107,10 @@ struct DetailGameView: View {
                                 Text("Rating")
                                     .foregroundColor(.secondary)
                                 Spacer()
-                                Text("\(Double((detailViewModel.detailGame?.rating)!), specifier: "%.2f")")
+                                Text("\(Double((detailViewModel.detailGame?.rating) ?? 0), specifier: "%.2f")")
                             }.padding(.vertical, 4)
                         }
                     }
-                    
                     if detailViewModel.detailGame?.genres != nil {
                         Divider()
                         HStack(alignment: .top) {
@@ -124,23 +118,21 @@ struct DetailGameView: View {
                                 .foregroundColor(.secondary)
                             Spacer()
                             VStack(alignment: .trailing) {
-                                ForEach(((detailViewModel.detailGame?.genres!)!)) { genre in
+                                ForEach(((detailViewModel.detailGame?.genres ?? []))) { genre in
                                     Text("\(genre.name)")
                                 }
                             }
                         }.padding(.vertical, 4)
                     }
-                    
                     if detailViewModel.detailGame?.age != nil {
                         Divider()
                         HStack {
                             Text("Age Rating")
                                 .foregroundColor(.secondary)
                             Spacer()
-                            Text("\((detailViewModel.detailGame?.age!.name)!)")
+                            Text("\((detailViewModel.detailGame?.age?.name) ?? "")")
                         }.padding(.vertical, 4)
                     }
-                    
                     VStack {
                         if detailViewModel.detailGame?.developers != nil {
                             Divider()
@@ -149,13 +141,12 @@ struct DetailGameView: View {
                                     .foregroundColor(.secondary)
                                 Spacer()
                                 VStack(alignment: .trailing) {
-                                    ForEach(((detailViewModel.detailGame?.developers!)!)) { developer in
+                                    ForEach(((detailViewModel.detailGame?.developers) ?? [])) { developer in
                                         Text("\(developer.name)")
                                     }
                                 }
                             }.padding(.vertical, 4)
                         }
-                        
                         if detailViewModel.detailGame?.publishers != nil {
                             Divider()
                             HStack(alignment: .top) {
@@ -163,13 +154,12 @@ struct DetailGameView: View {
                                     .foregroundColor(.secondary)
                                 Spacer()
                                 VStack(alignment: .trailing) {
-                                    ForEach(detailViewModel.detailGame!.publishers!) { publisher in
+                                    ForEach(detailViewModel.detailGame?.publishers ?? []) { publisher in
                                         Text("\(publisher.name)")
                                     }
                                 }
                             }.padding(.vertical, 4)
                         }
-                        
                         if detailViewModel.detailGame?.website != "" {
                             Divider()
                             VStack(alignment: .trailing) {
@@ -178,7 +168,9 @@ struct DetailGameView: View {
                                         .foregroundColor(.secondary)
                                     Spacer()
                                     Button(action: {
-                                        UIApplication.shared.open(URL(string: self.detailViewModel.detailGame!.website!)!)
+                                        if let url = URL(string: self.detailViewModel.detailGame?.website ?? "") {
+                                            UIApplication.shared.open(url)
+                                        }
                                     }) {
                                         Text(self.detailViewModel.detailGame?.website ?? "")
                                     }
@@ -188,7 +180,6 @@ struct DetailGameView: View {
                     }
                 }
                 Spacer()
-                
             }
             .padding(.horizontal, 20)
             .padding(.top, -50)

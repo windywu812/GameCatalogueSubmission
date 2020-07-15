@@ -29,13 +29,13 @@ class GenreViewModel: ObservableObject {
                         case .success(let response):
                             self.detailGenre.append(response)
                         case .failure(let error):
-                            print(error)
+                            print(error.localizedDescription)
                             self.detailGenre = []
                         }
                     }
                 }
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
                 self.listGenre = []
             }
         }
